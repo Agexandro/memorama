@@ -8,7 +8,7 @@ let plantsLength = 0;
 
 
 async function getPlants() {
-    const request = await fetch("/plants.json");
+    const request = await fetch("https://agexandro.github.io/memorama/plants.json");
     plants = await request.json();
     plantsLength = plants.plants.length;
 
