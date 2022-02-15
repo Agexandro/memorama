@@ -1,0 +1,55 @@
+.container {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(auto-fill, 130px);
+    margin: 0 auto;
+    width: 90%;
+}
+
+.card {
+    width: 130px;
+    height: 200px;
+    perspective: 1000px;
+}
+
+.card-inner {
+    position: relative;
+    transition: transform 0.6s;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+}
+
+
+.card-flip {
+    transform: rotateY(180deg);
+}
+
+
+.card-front, .card-back {
+    box-shadow: 4px 4px 4px darkgray;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    border-radius: 6px;
+}
+
+.card-back {
+    transform:  rotateY(180deg);
+    border: 1px solid gray;
+}
+
+.card-front {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fbackgroundlabs.com%2Fwp-content%2Fuploads%2F2013%2F05%2Fgreen-tartan-pattern.png&f=1&nofb=1");
+}
+
+img {
+    width: 90%;
+    height: 90%;
+    display: block;
+    margin: 5px;
+}
