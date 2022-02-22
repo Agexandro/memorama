@@ -1,13 +1,13 @@
 
 const container = document.getElementsByClassName("container")[0];
-const cards = [];
+let cards = [];
 let selectedCards = [];
 let goal = 0;
 let plants = [];
 let plantsLength = 0;
 
 
-async function getPlants() {
+async function gameStart() {
     const request = await fetch("https://agexandro.github.io/memorama/plants.json");
     plants = await request.json();
     plantsLength = plants.plants.length;
@@ -15,15 +15,22 @@ async function getPlants() {
     if (plants != null) {
         createCards();
         createCards();
-        main();
+        randomizeCards();
+        gameLogic();
+    }else{
+        alert("Game could not be loaded...");
     }
 }
 
-function randomCards() {
-    const tempCards = [];
-    cards.forEach(card => (
-        tempCards.push(cards[card])
-    ));
+function randomizeCards() {
+    const temp = [];
+    const cardsLength = cards.length;
+    for (let i = cardsLength-1; i >= 0; i--) {
+        const index = Math.round(Math.random()*i);
+        const splicedCard = cards.splice(index,1);
+        temp.push(splicedCard[0]); 
+    }
+    cards = temp;
 }
 
 
@@ -67,7 +74,7 @@ function createCards() {
 }
 
 
-function main() {
+function gameLogic() {
     for (let i = 0; i < cards.length; i++) {
 
         cards[i].cardFront.onclick = () => {
@@ -103,4 +110,4 @@ function main() {
 
 }
 
-getPlants();
+gameStart();
